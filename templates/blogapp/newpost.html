@@ -1,0 +1,60 @@
+{% extends 'blogapp/base.html' %}
+{% block content %}
+{% load static %}
+<div class="container custom-container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light w-100" style="padding: 10px; background: radial-gradient(circle at left, rgba(34, 193, 195, 0.8), transparent 70%),
+                radial-gradient(circle at right, rgba(253, 187, 45, 0.8), transparent 70%);">
+
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
+                <li><a href="/home" style="text-decoration: none;"><h1 class="w-50 " style="font-family: cursive; color: black; font-weight: bolder;">BLOGBRIDGE</h1></a></li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0 ms-auto">
+                <div class="dropdown">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="/home">Home</a></li>
+                        <li><a class="dropdown-item" href="/newpost">New Post</a></li>
+                        <li><a class="dropdown-item" href="/mypost">My Posts</a></li>
+                        <li><a class="dropdown-item" href="/signout">Sign Out</a></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+    </nav>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container custom-container " style="max-width: 1250px;">
+            <br><br>
+            <h1 class="fw-bolder"> Make a new post.</h1>
+            <hr><br>
+            <div class="mb-3">
+                <h3><label for="exampleInputEmail1" class="form-label">Heading/Title</label></h3>
+                <input type="text" class="form-control" id="exampleInputText" aria-describedby="emailHelp" name="title">
+            </div>
+            <div class="form-group">
+                <h3><label for="exampleFormControlTextarea3">Content</label></h3>
+                <textarea class="form-control" id="exampleFormControlTextarea3" rows="7" name="content"></textarea>
+            </div><br>
+            <div class="form-group">
+                <h3><label for="exampleFormControlTextarea3">Image</label></h3>
+                <input type="file" name="image" accept="image/*">
+            </div>
+            <br>
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% endblock %}

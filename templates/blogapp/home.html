@@ -1,0 +1,60 @@
+{% extends 'blogapp/base.html' %}
+{% block content %}
+{% load static %}
+<div class="container custom-container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light w-100" style="padding: 10px; background: radial-gradient(circle at left, rgba(34, 193, 195, 0.8), transparent 70%),
+                radial-gradient(circle at right, rgba(253, 187, 45, 0.8), transparent 70%);">
+
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
+                <li><a href="/home" style="text-decoration: none;"><h1 class="w-50 " style="font-family: cursive; color: black; font-weight: bolder;">BLOGBRIDGE</h1></a></li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0 ms-auto">
+                <div class="dropdown">
+                    <button class="btn btn-outline-primary dropdown-toggle " type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="/home">Home</a></li>
+                        <li><a class="dropdown-item" href="/newpost">New Post</a></li>
+                        <li><a class="dropdown-item" href="/mypost">My Posts</a></li>
+                        <li><a class="dropdown-item" href="/signout">Sign Out</a></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+    </nav><br><br>
+    <div class="container custom-container" style="max-width: 1350px; ">
+        {% for post in posts %}
+        <article class="media content-section">
+
+            <div class="media-body" style="border: 1px solid black; padding: 23px; margin-bottom: 10px;">
+                <div class="article-metadata">
+                    <h1 class="text-uppercase" style="text-align:left;float:left; color: #000000;">{{ post.author }}
+                    </h1>
+                    <h5 style="text-align:right;float:right;">{{ post.date_posted|date:"F d, Y" }}</h5>
+                    <hr style="clear:both;" />
+
+                </div>
+                <h3>{{ post.title }}</h3>
+                <p class="article-content">{{ post.content }}</p>
+                {% if post.image %}
+                <img src="{{post.image.url}}" alt="" width="300px" height="200px">
+                {% endif %}
+                <br><br>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
